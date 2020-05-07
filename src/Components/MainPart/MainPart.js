@@ -39,7 +39,7 @@ class MainPart extends Component {
     render() {
         return (
             <Container>
-                <List />
+                <List states={this.state.states}/>
             </Container>
         )
     }
