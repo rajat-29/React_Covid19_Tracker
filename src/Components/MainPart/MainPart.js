@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
+import List from '../List/List';
 
 class MainPart extends Component {
 
@@ -24,21 +25,21 @@ class MainPart extends Component {
     }
 
     storeData(result) {
-        let store_states;
-        
-        for(let i=0;i<res.length;i++) {
+        let store_states = this.state.states;
+
+        for(let i=0;i<result.length;i++) {
             store_states.push(result[i]);
         }
 
         this.setState({
-            states : store_states;
+            states : store_states,
         })
     }
 
     render() {
         return (
             <Container>
-
+                <List />
             </Container>
         )
     }
