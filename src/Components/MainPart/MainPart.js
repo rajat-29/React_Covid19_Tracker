@@ -1,11 +1,13 @@
 import React,{ Component } from 'react';
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
+import Title from '../Title/Title';
 import List from '../List/List';
 
 class MainPart extends Component {
 
     state = {
+        summary : Object,
         states : [],
     }
 
@@ -20,6 +22,9 @@ class MainPart extends Component {
             return res.data.data;
         })
         .then((res) => {
+            this.setState({
+                summary : res.summary,
+            })
             this.storeData(res.regional);
         })
     }
@@ -39,7 +44,8 @@ class MainPart extends Component {
     render() {
         return (
             <Container>
-                <List states={this.state.states}/>
+                <Title summary={this.state.summary} />
+                <List states={this.state.states} />
             </Container>
         )
     }

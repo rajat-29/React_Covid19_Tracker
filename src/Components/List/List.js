@@ -1,8 +1,7 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 function List(props) {
-
-    console.log(props.states)
 
     const allList = 
     props.states.length > 0
@@ -47,10 +46,10 @@ function List(props) {
     :  "";
     
     return (
-        <div className="container">
-            <div className="row w-100 mt-2">{allList}</div>
-        </div>
-    )
+        <Container>
+            <div className="row mt-2">{allList}</div>
+        </Container>
+    );
 }
 
 export default List;
