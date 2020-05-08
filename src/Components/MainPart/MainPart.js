@@ -5,6 +5,7 @@ import Title from '../Title/Title';
 import Chart from '../Chart/Chart';
 import BarGraph from '../BarGraph/BarGraph';
 import List from '../List/List';
+import image from '../../Images/image.png';
 
 class MainPart extends Component {
 
@@ -69,6 +70,7 @@ class MainPart extends Component {
     render() {
         return (
             <Container>
+                <img className="image" src={image} />
                 <Title summary={this.state.summary} />
                 <Chart chartData={this.state.chartData} />
                 <BarGraph summary={this.state.summary} />
