@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import axios from 'axios';
 import Title from '../Title/Title';
 import Chart from '../Chart/Chart';
+import BarGraph from '../BarGraph/BarGraph';
 import List from '../List/List';
 
 class MainPart extends Component {
@@ -70,6 +71,7 @@ class MainPart extends Component {
             <Container>
                 <Title summary={this.state.summary} />
                 <Chart chartData={this.state.chartData} />
+                <BarGraph summary={this.state.summary} />
                 <List states={this.state.states} />
             </Container>
         )
