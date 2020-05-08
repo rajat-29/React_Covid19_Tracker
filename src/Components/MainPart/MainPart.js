@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
 import Title from '../Title/Title';
+import Chart from '../Chart/Chart';
 import List from '../List/List';
 
 class MainPart extends Component {
@@ -9,11 +10,15 @@ class MainPart extends Component {
     state = {
         summary : Object,
         states : [],
-    }
+        chartData : {
+            labels : [],
+            datasets : [{ data : [],label : "", backgroundColor : [] }],
+        },
+    };
 
     componentDidMount() {
         this.getData();
-    }
+    };
 
     getData() {
         axios
@@ -24,12 +29,13 @@ class MainPart extends Component {
         .then((res) => {
             this.setState({
                 summary : res.summary,
-            })
+            });
             this.storeData(res.regional);
         })
     }
 
     storeData(result) {
+        result = this.addDataForChart(result);
         let store_states = this.state.states;
 
         for(let i=0;i<result.length;i++) {
@@ -41,10 +47,29 @@ class MainPart extends Component {
         })
     }
 
+    addDataForChart(result) {
+        this.state.chartData.datasets[0].label = 'State : ';
+        result.map((res) => {
+            this.state.chartData.labels.push(res.loc);
+            this.state.chartData.datasets[0].data.push(res.totalConfirmed);
+            this.state.chartData.datasets[0].backgroundColor.push(
+                this.getRandomColor()
+            );
+            return res
+        });
+        return result;
+    }
+
+    getRandomColor() {
+        var ColorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+        return ColorCode;
+    }
+
     render() {
         return (
             <Container>
                 <Title summary={this.state.summary} />
+                <Chart chartData={this.state.chartData} />
                 <List states={this.state.states} />
             </Container>
         )

@@ -2,7 +2,6 @@ import React from 'react';
 import { Container,Row,Col } from 'react-bootstrap';
 
 function Title(props) {
-    console.log(props)
     return (
         <Container style={{fontSize: "180%",fontStyle: "bold",margin: "10px 0px 10px 0px"}}>
             <Row>
